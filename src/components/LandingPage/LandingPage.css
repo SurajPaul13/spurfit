@@ -1,0 +1,11 @@
+.landing-page {
+  min-width: 1100px;
+  background-color: #333;
+}
+.main-content {
+  text-align: center;
+}
+.landing-page-bg{
+  border-radius: 10px;
+  margin-top: 10px;
+}

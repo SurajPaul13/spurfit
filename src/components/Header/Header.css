@@ -1,0 +1,35 @@
+.header-main{
+  min-width: 1100px;
+  min-height: 60px;
+  max-height: 10%;
+}
+.company-logo{
+  height: 50px;
+}
+  
+.navbar {
+  width: 70%;
+  margin: auto;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.navbar li a {
+    color: white; /* Change the color of the links */
+    text-decoration: none; /* Remove the underline */
+}
