@@ -1,0 +1,12 @@
+.footer-main{
+    height: 7vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }

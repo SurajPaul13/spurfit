@@ -4,25 +4,68 @@ import Emotions from './components/Emotions/Emotions'
 import SelfAwareness from './components/SelfAwareness/SelfAwareness'
 import Manifesto from './components/Manifesto/Manifesto'
 import './App.css'
+import Footer from './components/Footer/Footer'
+
+import { useRef, useEffect } from 'react'
+import {useIntersection} from 'react-use'
+import {gsap, TweenMax, Power4 } from 'gsap'
 
 const App = () => {
+
+  let app = useRef(null)
+  let emotionsPage = useRef(null)
+  let manifestoPage = useRef(null)
+  let selfAwarenessPage = useRef(null)
+  let workWithUsPage = useRef(null)
+
+  const emotionIntersection = useIntersection(emotionsPage,{
+    root:null,
+    rootMargin: "0px", 
+    threshold:0.5
+  });
+
+  const fadeIn = (element) => {
+    gsap.to(element, 1, {
+      opacity: 1,
+      y:-60,
+      ease:Power4.out,
+      stagger:{
+        amount:0.3
+      }
+    })
+  }
+  const fadeOut = (element) => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      y:-20,
+      ease:Power4.out,
+    })
+  }
+
+  useEffect(() => {
+    TweenMax.to(app.current, 0.5, { visibility: 'visible' });
+  }, []);
+
+  useEffect(() => {
+    if (emotionIntersection && emotionIntersection.intersectionRatio < 0.5) {
+      fadeOut(emotionsPage.current);
+    } else {
+      fadeIn(emotionsPage.current);
+    }
+  }, [emotionIntersection]);
+
   return (
-    <div className='main'>
+    <div ref={app} className='app-container'>
       <Header />
-      <div className='sections-container'>
-        <LandingPage />
-      </div>
-      <div>
-        <Emotions />
-      </div>
-      <div>
+      <main>
+        <LandingPage/>
+        <div ref={emotionsPage}>
+          <Emotions  />
+        </div>
         <Manifesto />
-      </div>
-      <div>
         <SelfAwareness />
-      </div>
-      <div>
-      </div>
+      </main>
+      <Footer />
     </div>
   )
 }
