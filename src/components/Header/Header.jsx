@@ -22,17 +22,17 @@ const Header = () => {
     return (
         <div className="header-main">
             <nav className="navbar">
-                <a ref={logoItem}><img src="https://res.cloudinary.com/dhiirsba5/image/upload/v1708234095/Spurfit%20Resources/ckw010wwgb5vx9nm0ls2.png" alt='company logo' className='company-logo' /></a>
+                <a ref={logoItem} rel="noreferrer"><img src="https://res.cloudinary.com/dhiirsba5/image/upload/v1708234095/Spurfit%20Resources/ckw010wwgb5vx9nm0ls2.png" alt='company logo' className='company-logo' /></a>
                 <ul>
-                    <li ref={emotionItem} ><a >Emotions</a></li>
-                    <li ref={manifestoItem}><a >Manifesto</a></li>
-                    <li ref={selfAwarenessItem}><a >Self-awareness test</a></li>
-                    <li ref={workWithUsItem}><a >Work with us</a></li>
-                    <li ref={downloadItem} className="nav-item-download">Download App</li>
+                    <li ref={emotionItem} >Emotions</li>
+                    <li ref={manifestoItem}>Manifesto</li>
+                    <li ref={selfAwarenessItem}>Self-awareness test</li>
+                    <li ref={workWithUsItem}>Work with us</li>
+                    <li ref={downloadItem} ><a className="nav-item-download" rel="noreferrer" href='https://apps.apple.com/in/app/spur-fit-personal-training/id1516471995' target='_blank'>Download App</a></li>
                 </ul>
                 <div>
-                    <button ref={loginItem} className='login-btn'>Login</button>
-                    <button ref={signupItem} className='sign-up-btn'>Sign Up</button>
+                    <button ref={loginItem} className='login-btn'><a  href='https://trainer.spur.fit/' target='_blank' style={{'textDecoration':'none', 'color':'#fff'}}>Login</a></button>
+                    <button ref={signupItem} className='sign-up-btn'><a href='https://trainer.spur.fit/trainersignup/'  target='_blank' style={{'textDecoration':'none', 'color':'#fff'}}>Sign Up</a></button>
                 </div>
             </nav>
         </div>

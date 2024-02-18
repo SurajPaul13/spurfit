@@ -4,7 +4,6 @@ import Emotions from './components/Emotions/Emotions'
 import WorkWithUs from './components/WorkWithUs/WorkWithUs'
 import Manifesto from './components/Manifesto/Manifesto'
 import './App.css'
-import Footer from './components/Footer/Footer'
 
 import { useRef, useEffect } from 'react'
 import { useIntersection } from 'react-use'
@@ -14,9 +13,6 @@ const App = () => {
 
   let app = useRef(null)
   let emotionsPage = useRef(null)
-  let manifestoPage = useRef(null)
-  let selfAwarenessPage = useRef(null)
-  let workWithUsPage = useRef(null)
 
   const emotionIntersection = useIntersection(emotionsPage, {
     root: null,
@@ -65,7 +61,6 @@ const App = () => {
         <Manifesto />
         <WorkWithUs />
       </main>
-      <Footer />
     </div>
   )
 }

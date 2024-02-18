@@ -59,9 +59,9 @@ const WorkWithUs = () => {
         start:'top 80%',
         end:'bottom top'
       },
-      x:0,
+      x:20,
       ease:'none',
-      duration:.8,
+      duration:1.5,
 
     })
   })
@@ -76,9 +76,9 @@ const WorkWithUs = () => {
         start:'top 80%',
         end:'bottom top'
       },
-      x:0,
+      x:-20,
       ease:'none',
-      duration:.8,
+      duration:1.5,
 
     })
   })
@@ -104,7 +104,6 @@ const WorkWithUs = () => {
       <div className='wwu-sub-container'>
         <div className='wwu-divL'>
           <div className='wwu-about-card'>
-            <img src='' />
             <h1 className='wwu-head'>About</h1>
             <p className='wwu-info'>At ahead our goal is to make self-improvemt fun and lasting.We know there is a way how to make it work. And thats what aHead is about!</p>
           </div>
