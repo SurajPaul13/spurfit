@@ -37,7 +37,6 @@
   cursor: pointer;
   color: #fff;
   text-decoration: none; 
-  font-weight: bold;
 }
 .navbar li:hover{
   color: #E6CCFF;
@@ -57,10 +56,10 @@
   border: none;
   color: #fff;
   font-size: 15px;
-cursor: pointer;
+  cursor: pointer;
 }
 .sign-up-btn{
-  background: linear-gradient(to right, #E6CCFF,#7F30E9);
+  background-color: #7F30E9;
   color: #fff;
   padding: 10px;
   padding-left: 20px;
