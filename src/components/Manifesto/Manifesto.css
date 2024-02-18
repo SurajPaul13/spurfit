@@ -1,0 +1,38 @@
+.manifesto{
+    padding-top: 10vh;
+    height: 84vh;
+    width: 1600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.manifesto-head-container{
+    display: flex;
+    flex-direction: column;
+}
+.manifesto-heading{
+    display: flex;
+    align-items: center;
+}
+
+.bullet-points-main-container{
+    display: flex;
+    flex-direction: column;
+    width: 1300px;
+}
+.bullet-point{
+    display: flex;
+    align-items: center;
+}
+.bullet-dot{
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+.bullet-point:hover{
+    font-size: 25px;
+    font-weight: bold;
+    color: #464FEC;
+    transition: width 0.3 ease-in-out height 0.3 ease-in-out;
+}

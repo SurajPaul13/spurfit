@@ -1,0 +1,23 @@
+.wwumain{
+    padding-top: 10vh;
+    height: 84vh;
+    width: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+.wwu-head-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: inherit;
+}
+.wwu-left-head{
+    font-size: 50px;
+}
+.wwu-right-head{
+    font-size: 50px;
+    color: #464FEC;
+}

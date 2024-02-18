@@ -1,14 +1,14 @@
 import Header from './components/Header/Header'
 import LandingPage from './components/LandingPage/LandingPage'
 import Emotions from './components/Emotions/Emotions'
-import SelfAwareness from './components/SelfAwareness/SelfAwareness'
+import WorkWithUs from './components/WorkWithUs/WorkWithUs'
 import Manifesto from './components/Manifesto/Manifesto'
 import './App.css'
 import Footer from './components/Footer/Footer'
 
 import { useRef, useEffect } from 'react'
-import {useIntersection} from 'react-use'
-import {gsap, TweenMax, Power4 } from 'gsap'
+import { useIntersection } from 'react-use'
+import { gsap, TweenMax, Power4 } from 'gsap'
 
 const App = () => {
 
@@ -18,27 +18,27 @@ const App = () => {
   let selfAwarenessPage = useRef(null)
   let workWithUsPage = useRef(null)
 
-  const emotionIntersection = useIntersection(emotionsPage,{
-    root:null,
-    rootMargin: "0px", 
-    threshold:0.5
+  const emotionIntersection = useIntersection(emotionsPage, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5
   });
 
   const fadeIn = (element) => {
     gsap.to(element, 1, {
       opacity: 1,
-      y:-60,
-      ease:Power4.out,
-      stagger:{
-        amount:0.3
+      y: -60,
+      ease: Power4.out,
+      stagger: {
+        amount: 0.3
       }
     })
   }
   const fadeOut = (element) => {
-    gsap.to(element, 1, {
+    gsap.to(element, 2, {
       opacity: 0,
-      y:-20,
-      ease:Power4.out,
+      y: -20,
+      ease: Power4.out,
     })
   }
 
@@ -58,12 +58,12 @@ const App = () => {
     <div ref={app} className='app-container'>
       <Header />
       <main>
-        <LandingPage/>
+        <LandingPage />
         <div ref={emotionsPage}>
-          <Emotions  />
+          <Emotions />
         </div>
         <Manifesto />
-        <SelfAwareness />
+        <WorkWithUs />
       </main>
       <Footer />
     </div>

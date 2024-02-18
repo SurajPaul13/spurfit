@@ -22,12 +22,12 @@ const Header = () => {
     return (
         <div className="header-main">
             <nav className="navbar">
-                <a ref={logoItem} href='/home'><img src="https://res.cloudinary.com/dhiirsba5/image/upload/v1708102028/lvsag27vfeuhphejnm8p.png" alt='company logo' className='company-logo' /></a>
+                <a ref={logoItem}><img src="https://res.cloudinary.com/dhiirsba5/image/upload/v1708234095/Spurfit%20Resources/ckw010wwgb5vx9nm0ls2.png" alt='company logo' className='company-logo' /></a>
                 <ul>
-                    <li ref={emotionItem} ><a href='/emotions'>Emotions</a></li>
-                    <li ref={manifestoItem}><a href='/manifesto'>Manifesto</a></li>
-                    <li ref={selfAwarenessItem}><a href='/self-awareness'>Self-awareness test</a></li>
-                    <li ref={workWithUsItem}><a href='/work-with-us'>Work with us</a></li>
+                    <li ref={emotionItem} ><a >Emotions</a></li>
+                    <li ref={manifestoItem}><a >Manifesto</a></li>
+                    <li ref={selfAwarenessItem}><a >Self-awareness test</a></li>
+                    <li ref={workWithUsItem}><a >Work with us</a></li>
                     <li ref={downloadItem} className="nav-item-download">Download App</li>
                 </ul>
                 <div>

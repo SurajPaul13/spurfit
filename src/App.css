@@ -1,6 +1,7 @@
 .app-container {
   min-height: 100vh;
-  background-color: #2228;
+  min-width: 1600px;
+  width: 80vw;
 }
 main{
   padding-top: 70px;
