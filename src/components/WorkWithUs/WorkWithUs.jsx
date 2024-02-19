@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import { gsap, Power4 } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useIntersection } from 'react-use'
 import './WorkWithUs.css'
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,84 +52,131 @@ const workWithUsContent = [
 
 const WorkWithUs = () => {
 
-  const aboutCardRef = useRef(null)
-  const productCardRef = useRef(null)
+  const leftHeadRef = useRef(null);
+  const rightHeadRef = useRef(null);
+  const aboutCardRef = useRef(null);
+  const productCardRef = useRef(null);
+  const scrollerRef = useRef(null);
+
+  const leftHeadIntersection = useIntersection(leftHeadRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.3
+  });
+
+  const rightHeadIntersection = useIntersection(rightHeadRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.3
+  });
+
+  const aboutIntersection = useIntersection(aboutCardRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5
+  });
+  const productIntersection = useIntersection(productCardRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.3
+  });
+
+  const rightScrollerIntersection = useIntersection(scrollerRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.3
+  });
+
+  const animateLeftHead = () => {
+    gsap.fromTo(leftHeadRef.current, {
+      opacity: 0,
+      x: -50
+    }, {
+      opacity: 1,
+      x: 0,
+      ease: Power4.out,
+      duration: 0.8
+    });
+  };
+  const animateAboutCard = () => {
+    gsap.fromTo(aboutCardRef.current, {
+      opacity: 0,
+      x: -50
+    }, {
+      opacity: 1,
+      x: 0,
+      ease: Power4.out,
+      duration: 0.8
+    });
+  };
+  const animateProductCard = () => {
+    gsap.fromTo(productCardRef.current, {
+      opacity: 0,
+      x: -50
+    }, {
+      opacity: 1,
+      x: 0,
+      ease: Power4.out,
+      duration: 0.8
+    });
+  };
+
+  const animateRightHead = () => {
+    gsap.fromTo(rightHeadRef.current, {
+      opacity: 0,
+      x: 50
+    }, {
+      opacity: 1,
+      x: 0,
+      ease: Power4.out,
+      duration: 0.8
+    });
+  };
+
+  const animateRightScroller = () => {
+    gsap.fromTo(scrollerRef.current, {
+      opacity: 0,
+      x: 50
+    }, {
+      opacity: 1,
+      x: 0,
+      ease: Power4.out,
+      duration: 0.8
+    });
+  };
 
   useEffect(() => {
-    const animationTimeline = gsap.timeline();
+    if (leftHeadIntersection && leftHeadIntersection.intersectionRatio > 0.3) {
+      animateLeftHead();
+    }
+  }, [leftHeadIntersection]);
 
-    ScrollTrigger.create({
-      trigger: '.wwumain',
-      start: 'top 80%',
-      end: 'bottom top',
-      scrub: true
-    });
+  useEffect(() => {
+    if (aboutIntersection && aboutIntersection.intersectionRatio > 0.3) {
+      animateAboutCard();
+    }
+  }, [aboutIntersection]);
 
-    animationTimeline.fromTo('.wwu-left-head', {
-      x: -200,
-    }, {
-      x: 20,
-      ease: 'none',
-      duration: 1.5,
-      scrollTrigger: {
-        trigger: '.wwu-left-head',
-        start: 'top 80%',
-        onRefresh: ScrollTrigger.refresh
-      }
-    });
+  useEffect(() => {
+    if (productIntersection && productIntersection.intersectionRatio > 0.3) {
+      animateProductCard();
 
-    animationTimeline.fromTo('.wwu-right-head', {
-      x: 200,
-    }, {
-      x: -20,
-      ease: 'none',
-      duration: 1.5,
-      scrollTrigger: {
-        trigger: '.wwu-right-head',
-        start: 'top 80%',
-        onRefresh: ScrollTrigger.refresh
-      }
-    }, 0);
+    }
+  }, [productIntersection]);
 
-    animationTimeline.fromTo(aboutCardRef.current, {
-      x: -200,
-    }, {
-      x: 20,
-      ease: 'none',
-      duration: 1.5,
-      scrollTrigger: {
-        trigger: '.wwu-left-head',
-        start: 'top 80%',
-        onRefresh: ScrollTrigger.refresh
-      }
-    });
-    animationTimeline.fromTo(productCardRef.current, {
-      x: -200,
-    }, {
-      x: 20,
-      ease: 'none',
-      duration: 1.5,
-      scrollTrigger: {
-        trigger: '.wwu-left-head',
-        start: 'top 80%',
-        onRefresh: ScrollTrigger.refresh
-      }
-    });
+  useEffect(() => {
+    if (rightHeadIntersection && rightHeadIntersection.intersectionRatio > 0.3) {
+      animateRightHead();
+    }
+  }, [rightHeadIntersection]);
 
-    animationTimeline.fromTo(
-      '.wwu-divR',
-      { opacity: 0, y: 90 },
-      {
-        opacity: 1, y: 0, duration: 2, ease: 'none',
-        scrollTrigger: {
-          trigger: '.wwu-left-head',
-          start: 'top 80%',
-          onRefresh: ScrollTrigger.refresh
-        }
-      },
-      0.2
-    );
-  }, []);
+  useEffect(() => {
+    if (rightScrollerIntersection && rightScrollerIntersection.intersectionRatio > 0.3) {
+      animateRightScroller();
+    }
+  }, [rightScrollerIntersection]);
+
+
 
   const createCard = item => {
     const { head, info } = item
@@ -140,12 +188,14 @@ const WorkWithUs = () => {
       </div>
     </>
   }
+  
+  
 
   return (
     <div className="wwumain">
       <div className='wwu-head-container'>
-        <h1 className='wwu-left-head'>Work with us</h1>
-        <h1 className='wwu-right-head'>ahead</h1>
+        <h1 ref={leftHeadRef} className='wwu-left-head'>Work with us</h1>
+        <h1 ref={rightHeadRef} className='wwu-right-head'>ahead</h1>
       </div>
       <div className='wwu-sub-container'>
         <div className='wwu-divL'>
@@ -158,7 +208,7 @@ const WorkWithUs = () => {
             <p className='wwu-info'>Sure, you could spend ages reading books or sitting in seminars on how to become a better spouse, parent, or manager - like we did...</p>
           </div>
         </div>
-        <div className='wwu-divR'>
+        <div ref={scrollerRef} className='wwu-divR'>
           {workWithUsContent.map(each => createCard(each))}
         </div>
       </div>

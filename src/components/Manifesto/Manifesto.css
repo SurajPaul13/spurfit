@@ -1,10 +1,10 @@
 .manifesto{
-    padding-top: 10vh;
-    height: 60vh;
-    width: 1600px;
+    position: relative;
+    top: 100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding-left: 40px;
 }
 .manifesto-head-container{
     display: flex;
@@ -18,20 +18,21 @@
 .bullet-points-main-container{
     display: flex;
     flex-direction: column;
-    width: 1300px;
+    justify-content: flex-start;
+    width: 100%;
 }
 .bullet-point{
     display: flex;
     align-items: center;
 }
 .bullet-dot{
-    height: 20px;
-    width: 20px;
+    height: 10px;
+    width: 10px;
     border-radius: 100%;
     margin-right: 15px;
 }
 .bullet-point:hover{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     color: #464FEC;
     transition: width 0.3 ease-in-out height 0.3 ease-in-out;

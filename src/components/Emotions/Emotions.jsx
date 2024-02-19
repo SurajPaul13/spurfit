@@ -1,5 +1,7 @@
-import React,{useEffect} from 'react'
-import { gsap } from 'gsap'
+import React,{useRef,useEffect} from 'react'
+
+import { useIntersection } from 'react-use'
+import { gsap, Power4 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Emotions.css'
 gsap.registerPlugin(ScrollTrigger);
@@ -17,8 +19,39 @@ const sliderCards = ['https://res.cloudinary.com/dhiirsba5/image/upload/v1708250
 const Emotions = () => {
 
   const emotionsTimeline = gsap.timeline()
+  let emotionsPage = useRef(null)
 
-  useEffect(() => { })
+  const emotionIntersection = useIntersection(emotionsPage, {
+    root: null,
+    rootMargin: "0px",
+    threshold: .3
+  });
+
+  const fadeIn = (element) => {
+    gsap.fromTo(element, .8,{opacity:0, y:10}, {
+      opacity: 1,
+      y: 0,
+      ease: Power4.out,
+      stagger: {
+        amount: 0.5
+      }
+    })
+  }
+  const fadeOut = (element) => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      y: -20,
+      ease: Power4.out,
+    })
+  }
+
+  useEffect(() => {
+    if (emotionIntersection && emotionIntersection.intersectionRatio <= 0.3) {
+      fadeOut(emotionsPage.current);
+    } else {
+      fadeIn(emotionsPage.current);
+    }
+  }, [emotionIntersection]);
 
   useEffect(() => {
 
@@ -53,18 +86,9 @@ const Emotions = () => {
       duration:1,
     });
   })
-  
-
-  const createSliderCards = (slider) => {
-
-    return (
-    <div className='slider'>
-      <img className='slider-images' src={slider} alt='paul'/>
-    </div>)
-  }
 
   return (
-    <div id="emotions" className='emotions-container'>
+    <div ref={emotionsPage} className='emotions-container'>
       <div className='emotions-card-1'>
         <h1 className='eqbeats'>EQ Beats IQ</h1>
         <p className='info'>People with high emotional intelligence (EQ) live more fulfilled lives. They tend be happier and have healthier relationships.</p>
@@ -78,7 +102,9 @@ const Emotions = () => {
           <img width="48" height="48" src="https://img.icons8.com/emoji/48/thinking-face.png" alt="thinking-face"/>
         </div>
         <div className='slider-cards'>
-          {sliderCards.map(slider => createSliderCards(slider))}
+          {sliderCards.map((slider, index) => 
+            <img className='slider-images' src={slider} alt={`paul ${index}`}/>
+            )}
         </div>
       </div>
     </div>

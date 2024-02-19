@@ -52,12 +52,12 @@ const Manifesto = () => {
 
   const handleMouseEnter = (index) => {
     setActiveIndex(index);
-    TweenMax.to(refDotArray[index].current, .8, { width: 60, height: 60, ease: Power3.easeOut });
+    TweenMax.to(refDotArray[index].current, .8, { width: 20, height: 20, ease: Power3.easeOut });
   };
 
   const handleMouseLeave = (index) => {
     setActiveIndex(null);
-    TweenMax.to(refDotArray[index].current, .8, { width: 20, height: 20, ease: Power3.easeOut });
+    TweenMax.to(refDotArray[index].current, .8, { width: 10, height: 10, ease: Power3.easeOut });
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Manifesto = () => {
         0.8,
         { opacity: 0, x: 40 },
         { opacity: 1, x: 0 },
-        0.2
+        0.1
     );
 
     ScrollTrigger.batch(refDotArray.map(ref => ref.current), {
@@ -79,7 +79,7 @@ const Manifesto = () => {
 
 
   return (
-    <div id="manifesto" className='manifesto'>
+    <div className='manifesto'>
       <div className='manifesto-head-container'>
         <h3>Wrong with self-improvement & how we're fixing it.</h3>
         <div className='manifesto-heading'>
