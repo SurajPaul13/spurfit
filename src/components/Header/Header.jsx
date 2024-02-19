@@ -23,7 +23,7 @@ const Header = () => {
     return (
         <div className="header-main">
             <nav className="navbar">
-                <a ref={logoItem} rel="noreferrer"><img src="https://res.cloudinary.com/dhiirsba5/image/upload/v1708234095/Spurfit%20Resources/ckw010wwgb5vx9nm0ls2.png" alt='company logo' className='company-logo' /></a>
+                <a ref={logoItem} ><img src="https://res.cloudinary.com/dhiirsba5/image/upload/v1708234095/Spurfit%20Resources/ckw010wwgb5vx9nm0ls2.png" alt='company logo' className='company-logo' /></a>
                 <ul>
                     <li ref={emotionItem} >Emotions</li>
                     <li ref={manifestoItem}>Manifesto</li>
