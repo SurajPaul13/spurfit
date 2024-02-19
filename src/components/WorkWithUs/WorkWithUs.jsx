@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { gsap } from 'gsap';
-
+import React, {useEffect } from 'react';
+import { gsap, Power3 } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import './WorkWithUs.css'
+
+gsap.registerPlugin(ScrollTrigger);
 
 const workWithUsContent = [
   {
@@ -50,39 +52,49 @@ const workWithUsContent = [
 const WorkWithUs = () => {
 
   useEffect(() => {
-    gsap.fromTo('.wwu-left-head',{
-      x:-200,
-      scrub:true
-    },{
-      ScrollTrigger:{
-        trigger:'.wwu-left-head',
-        start:'top 80%',
-        end:'bottom top'
-      },
-      x:20,
-      ease:'none',
-      duration:1.5,
+    const animationTimeline = gsap.timeline();
 
-    })
-  })
+    ScrollTrigger.create({
+      trigger: '.wwumain',
+      start: 'top 80%',
+      end: 'bottom top',
+      scrub: true
+    });
 
-  useEffect(() => {
-    gsap.fromTo('.wwu-right-head',{
-      x:200,
-      scrub:true
-    },{
-      ScrollTrigger:{
-        trigger:'.wwu-left-head',
-        start:'top 80%',
-        end:'bottom top'
-      },
-      x:-20,
-      ease:'none',
-      duration:1.5,
+    animationTimeline.staggerFromTo(['.wwu-left-head','.wwu-divL'],1.5, {
+      x: -200,
+    }, {
+      x: 20,
+      ease: 'none',
+      duration: 1.5,
+      scrollTrigger: {
+        trigger: '.wwu-left-head',
+        start: 'top 80%',
+        onRefresh: ScrollTrigger.refresh
+      }
+    });
+  
+    animationTimeline.fromTo('.wwu-right-head', {
+      x: 200,
+    }, {
+      x: -20,
+      ease: 'none',
+      duration: 1.5,
+      scrollTrigger: {
+        trigger: '.wwu-right-head',
+        start: 'top 80%',
+        onRefresh: ScrollTrigger.refresh
+      }
+    }, 0);
 
-    })
-  })
 
+    animationTimeline.fromTo(
+      '.wwu-divR',
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.8, ease: Power3.easeOut },
+      0.2
+    );
+  }, []);
 
   const createCard = item => {
     const { head, info } = item
@@ -116,6 +128,7 @@ const WorkWithUs = () => {
           {workWithUsContent.map(each => createCard(each))}
         </div>
       </div>
+      
     </div>
   );
 };

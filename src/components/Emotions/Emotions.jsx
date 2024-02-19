@@ -16,25 +16,30 @@ const sliderCards = ['https://res.cloudinary.com/dhiirsba5/image/upload/v1708250
 
 const Emotions = () => {
 
-  useEffect(() => { gsap.fromTo('.slider',{
-    opacity: 0,
-    x:500,
-    rotation:0,
-    scrub:true,
-  },{
-    opacity:1,
-    ScrollTrigger:{
-      trigger:'.slider-heading-container',
-      start:'top 80%',
-      end:'bottom top'
-  },
-    x:0,
-    ease:'none',
-    duration:1,
-  })})
+  const emotionsTimeline = gsap.timeline()
+
+  useEffect(() => { })
 
   useEffect(() => {
-    gsap.fromTo('.slider-heading-container',{
+
+    emotionsTimeline.fromTo('.slider',{
+      opacity: 0,
+      x:500,
+      rotation:0,
+      scrub:true,
+    },{
+      opacity:1,
+      ScrollTrigger:{
+        trigger:'.slider-heading-container',
+        start:'top 80%',
+        end:'bottom top'
+    },
+      x:0,
+      ease:'none',
+      duration:1,
+    })
+
+    emotionsTimeline.fromTo('.slider-heading-container',{
       x:-200,
       scrub:true
     },{
@@ -46,8 +51,7 @@ const Emotions = () => {
       x:0,
       ease:'easeOut',
       duration:1,
-
-    })
+    });
   })
   
 

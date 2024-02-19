@@ -61,14 +61,22 @@ const Manifesto = () => {
   };
 
   useEffect(() => {
-    TweenMax.staggerFromTo(
-      refDotArray.map(ref => ref.current), 
-      .8,
-      { opacity: 0, x: 40, ease: Power3.easeOut }, 
-      { opacity: 1, x: 0 },
-      0.2
+    const manifestoTimeline = gsap.timeline();
+    manifestoTimeline.staggerFromTo(
+        refDotArray.map(ref => ref.current),
+        0.8,
+        { opacity: 0, x: 40 },
+        { opacity: 1, x: 0 },
+        0.2
     );
-  })
+
+    ScrollTrigger.batch(refDotArray.map(ref => ref.current), {
+        start: 'top 60%', 
+        onEnter: batch => manifestoTimeline.play(),
+        scrub: true
+      });
+    });
+
 
   return (
     <div id="manifesto" className='manifesto'>
@@ -82,7 +90,7 @@ const Manifesto = () => {
         {bulletPoints.map((each, index) => (
             <div key={index} className='bullet-point' onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={() => handleMouseLeave(index)}>
               <div ref={refDotArray[index]} className='bullet-dot' style={{ backgroundColor: each.color }}></div>
-              <p >{each.bulletPoint}</p>
+              <p>{each.bulletPoint}</p>
             </div>
           ))}
         </div>
