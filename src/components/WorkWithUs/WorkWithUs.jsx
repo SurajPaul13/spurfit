@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, { useRef,useEffect } from 'react';
 import { gsap, Power3 } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import './WorkWithUs.css'
@@ -51,17 +51,20 @@ const workWithUsContent = [
 
 const WorkWithUs = () => {
 
+  const aboutCardRef = useRef(null)
+  const productCardRef = useRef(null)
+
   useEffect(() => {
     const animationTimeline = gsap.timeline();
 
-    ScrollTrigger.create({
+    ScrollTrigger.create({ // Initialize ScrollTrigger
       trigger: '.wwumain',
       start: 'top 80%',
       end: 'bottom top',
       scrub: true
     });
 
-    animationTimeline.staggerFromTo(['.wwu-left-head','.wwu-divL'],1.5, {
+    animationTimeline.fromTo('.wwu-left-head', {
       x: -200,
     }, {
       x: 20,
@@ -87,11 +90,66 @@ const WorkWithUs = () => {
       }
     }, 0);
 
+    {/*animationTimeline.fromTo(
+      aboutCardRef.current,
+      { opacity: 0, x: 90 },
+      { opacity: 1, x: 0, duration: 2, ease: Power3.easeOut,
+        scrollTrigger: {
+          trigger: '.wwu-left-head',
+          onEnter: () => animationTimeline.play(),
+          onLeaveBack: () => animationTimeline.reverse(),
+          onRefresh: ScrollTrigger.refresh
+        } },
+      0.2
+      );*/}
+
+      animationTimeline.fromTo(aboutCardRef.current, {
+        x: -200,
+      }, {
+        x: 20,
+        ease: 'none',
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: '.wwu-left-head',
+          start: 'top 80%',
+          onRefresh: ScrollTrigger.refresh
+        }
+      });
+      animationTimeline.fromTo(productCardRef.current, {
+        x: -200,
+      }, {
+        x: 20,
+        ease: 'none',
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: '.wwu-left-head',
+          start: 'top 80%',
+          onRefresh: ScrollTrigger.refresh
+        }
+      });
+
+    {/*animationTimeline.fromTo(
+      productCardRef.current,
+      { opacity: 0, x: 90 },
+      { opacity: 1, x: 0, duration: 2, ease: Power3.easeOut,scrollTrigger: {
+        trigger: '.wwu-right-head',
+        onEnter: () => animationTimeline.play(),
+        onLeaveBack: () => animationTimeline.reverse(),
+        onRefresh: ScrollTrigger.refresh
+      } },
+      0.2
+    );*/}
 
     animationTimeline.fromTo(
       '.wwu-divR',
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.8, ease: Power3.easeOut },
+      { opacity: 0, y: 90 },
+      { opacity: 1, y: 0, duration: 2, ease: 'none',
+      duration: 1.5,
+      scrollTrigger: {
+        trigger: '.wwu-left-head',
+        start: 'top 80%',
+        onRefresh: ScrollTrigger.refresh
+      } },
       0.2
     );
   }, []);
@@ -115,11 +173,11 @@ const WorkWithUs = () => {
       </div>
       <div className='wwu-sub-container'>
         <div className='wwu-divL'>
-          <div className='wwu-about-card'>
+          <div ref ={aboutCardRef}  className='wwu-about-card'>
             <h1 className='wwu-head'>About</h1>
             <p className='wwu-info'>At ahead our goal is to make self-improvemt fun and lasting.We know there is a way how to make it work. And thats what aHead is about!</p>
           </div>
-          <div className='wwu-product-card'>
+          <div ref ={productCardRef}  className='wwu-product-card'>
             <h1 className='wwu-head'>Product</h1>
             <p className='wwu-info'>Sure, you could spend ages reading books or sitting in seminars on how to become a better spouse, parent, or manager - like we did...</p>
           </div>
