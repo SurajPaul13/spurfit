@@ -38,7 +38,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Manifesto = () => {
 
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [setActiveIndex] = useState(null);
 
   const dotOne = useRef(null)
   const dotTwo = useRef(null)
